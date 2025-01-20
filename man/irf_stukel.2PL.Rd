@@ -22,5 +22,5 @@ irf_stukel.2PL(theta, a = 1, b = 0, alpha1 = 0, alpha2 = 0)
 Stukel, T. A. (1988). Generalized logistic models. Journal of the American Statistical Association, 83 (402), 426-431.
 }
 \author{
-Fabio Setti
+Fabio Setti (fsetti@fordham.edu)
 }

@@ -1,47 +1,22 @@
-irf_stukel.2PL <- function(theta, a = 1, b = 0, alpha1 = 0, alpha2 = 0)
+irf_stukel.2PL <- function (theta, a = 1, b = 0, alpha1 = 0.00001, alpha2 = 0.00001)
 {
-   if ((theta - b)>0)
-   {
-      if (alpha1>0)
-      {
-         h <- alpha1^(-1)*(exp(alpha1*a*(theta - b))-1)
-      }
-      else if (alpha1 == 0)
-      {
-         h <- a*(theta - b)
-      }
-      else
-      {
-         h <- -alpha1^-1*log(1-alpha1*a*(theta - b))
-      }
-   }
-   else
-   {
-      if (alpha2 > 0)
-      {
-         h <- -alpha2^-1*(exp(alpha2*a*((b - theta)))-1)
-      }
-      else if (alpha2 == 0)
-      {
-         h <- a*(theta - b)
-      }
-      else
-      {
-         h <- alpha2^-1*log(1-alpha2*a*((b - theta)))
-      }
-   }
-
-
-   # make sure that exponent does not result in a number that is too large for R to handle when probability is very extreme.
-
-   if(h > 601.7777)
-      {
-      h = 601.7777
-      }
-   if(h < - 601.7777)
-   {
-      h = - 601.7777
-   }
-
-   (exp(h))/(1 + exp(h))
+  
+  # Using the fact that TRUE and FALSE are 1 and 0 respectively to vectorize pice-wise function
+  
+  h <- ((theta - b) > 0)*
+    (((alpha1 > 0) * alpha1^(-1) * (exp(alpha1 * a * (theta - b)) - 1)) +
+       ((alpha1 == 0) * a * (theta - b)) +
+       (alpha1 < 0) * -alpha1^(-1) * log(abs(1 - alpha1 * a * (theta - b)))) +
+    
+    ((theta - b) <= 0)*
+    (((alpha2 > 0) * -alpha2^(-1) * (exp(alpha2 * a * ((b - theta))) - 1)) +
+       ((alpha2 == 0) * a * (theta - b)) +
+       (alpha2 < 0) * alpha2^(-1) * log(abs(1 - alpha2 * a * ((b - theta)))))
+  
+  # Make sure that h does not become too large for R to handle
+  
+  h <- ifelse(h > 601.7777, 601.7777, h)
+  h <- ifelse(h < -601.7777, -601.7777, h)
+  
+  return(exp(h)/(1 + exp(h)))
 }
