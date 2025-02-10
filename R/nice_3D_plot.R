@@ -7,7 +7,8 @@ nice_3D_plot <- function(y,
                          groups = NULL,  
                          reg_plane = FALSE,
                          interaction = FALSE, 
-                         plane_res = 50, ...){
+                         plane_res = 50, 
+                         ...){
   
   require(plotly, quietly = TRUE)
   require(tidyverse, quietly = TRUE)
@@ -41,6 +42,7 @@ nice_3D_plot <- function(y,
                text = dot_labels,
                hoverinfo = "text",
                color = ~groups,
+               ...,
                hovertemplate = paste0("%{text} <br>" ,
                                       axx[[1]], ": %{x:0.} <br>",
                                       axy[[1]], ": %{y:0.} <br>",

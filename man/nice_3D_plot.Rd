@@ -30,6 +30,7 @@ nice_3D_plot(y,
 \item{reg_plane}{Set to `TRUE` if regression plane is desired.}
 \item{interaction}{Set to `TRUE` along with `reg_plane = TRUE` if regression plane with interaction is desired.} 
 \item{plane_res}{Square root of the number of unique points calculated to draw the regression plane. Defaults to 50.}
+\item{...}{Arguments to be passed to the `plot_ly()` function.}
 }
 \details{
 %%  ~~ If necessary, more details than the description above ~~
@@ -69,6 +70,20 @@ plot_iris <- nice_3D_plot(y = iris$Sepal.Length,
                           reg_plane = FALSE)
 
 plot_iris
+
+
+## pass arguments to plot_ly()
+
+plot_iris_pass <- nice_3D_plot(y = iris$Sepal.Length,
+                          x1 = iris$Petal.Length,
+                          x2 = iris$Petal.Width,
+                          dot_labels = paste("row", 1:150),
+                          groups = iris$Species,
+                          axis_names = c("Sepal Length", "PL", "PW"),
+                          reg_plane = FALSE,
+                          opacity = .3)
+
+plot_iris_pass
 
 
 
