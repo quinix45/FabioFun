@@ -87,7 +87,7 @@ regression_flextable <- function(lm_object, title = "", var_names = NULL, interc
   ft <- ft %>%
     flextable::compose(j = "R^2", value = as_paragraph(as_equation(lm_tab[,6]))) %>%
     flextable::compose(j = "R^2", part = "header" , value = as_paragraph(as_equation("R^2"))) %>%
-    width( j = 6, 3.3, unit = "in") %>% 
+    width( j = 6, 3.5, unit = "in") %>% 
     bold(bold = TRUE, part = "header") %>%
     line_spacing(space = 1.5, part = "all") %>%
     set_caption(caption = title) %>%
@@ -102,11 +102,11 @@ regression_flextable <- function(lm_object, title = "", var_names = NULL, interc
 
 ## Test
 
-lm_mod <- lm(Sepal.Length ~ Petal.Length + Petal.Width, iris)
-
-reg_table <- regression_flextable(lm_mod, intercept = FALSE)
-
-print(reg_table)
+# lm_mod <- lm(Sepal.Length ~ Petal.Length + Petal.Width, iris)
+# 
+# reg_table <- regression_flextable(lm_mod)
+# 
+# print(reg_table)
 
 # 
 # save_as_docx(reg_table, path = "table.docx")
