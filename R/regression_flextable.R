@@ -38,7 +38,7 @@ regression_flextable <- function(lm_object, title = "", var_names = NULL, interc
     
   } else if(Rsq_p <= .001)
   {
-    Rsq_p <- ".001^{***}"
+    Rsq_p <- ".001***"
   }
   
   
@@ -65,8 +65,8 @@ regression_flextable <- function(lm_object, title = "", var_names = NULL, interc
   
   lm_tab$p <- as.numeric(ifelse(lm_tab$p == "0", .001, lm_tab$p))
   
-  lm_tab$p[lm_tab$p < .05 & lm_tab$p >.01] <- paste0(lm_tab$p[lm_tab$p < .05 & lm_tab$p >.01], "^{*}")
-  lm_tab$p[lm_tab$p < .01 & lm_tab$p >.001] <- paste0(lm_tab$p[lm_tab$p < .01 & lm_tab$p >.001], "^{**}")
+  lm_tab$p[lm_tab$p < .05 & lm_tab$p >.01] <- paste0(lm_tab$p[lm_tab$p < .05 & lm_tab$p >.01], "*")
+  lm_tab$p[lm_tab$p < .01 & lm_tab$p >.001] <- paste0(lm_tab$p[lm_tab$p < .01 & lm_tab$p >.001], "**")
   lm_tab$p[lm_tab$p <= .001] <- "<.001***"
   
   
@@ -102,8 +102,11 @@ regression_flextable <- function(lm_object, title = "", var_names = NULL, interc
 
 ## Test
 
-# lm_mod <- lm(Sepal.Length ~ Petal.Length + Petal.Width, iris)
-# 
-# reg_table <- regression_flextable(lm_mod)
+lm_mod <- lm(Sepal.Length ~ Petal.Length + Petal.Width, iris)
+
+reg_table <- regression_flextable(lm_mod, intercept = FALSE)
+
+print(reg_table)
+
 # 
 # save_as_docx(reg_table, path = "table.docx")

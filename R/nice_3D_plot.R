@@ -78,7 +78,7 @@ nice_3D_plot <- function(y,
     lm_surface <- expand.grid(x1 = X1_grid, x2 = X2_grid)
     lm_surface$y <- predict.lm(lm_mod, newdata = lm_surface)
     
-    require(reshape2, quietly = TRUE)
+    require(reshape2, quietly = TRUE,)
     lm_surface <- acast(lm_surface, x2 ~ x1, value.var = "y") 
     
     
