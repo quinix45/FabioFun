@@ -4,16 +4,16 @@ Title: Some functions I want to save
 Version: 0.1.0
 Author: Fabio Setti
 Maintainer: <fsetti@fordham.edu>
-Description: A bunch of function that may or may not be useful in the future.
-License: No license
+Description: A bunch of functions that may or may not be useful in the future.
+License: MIT
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.3.2
 
 Imports:
-    tidyverse,
-    gt (>= 0.5.0),
-    htmltools,
-    reactable, 
-    plotly,
+    tidyverse
+    gt (>= 0.5.0)
+    htmltools
+    reactable
+    plotly
     flextable
