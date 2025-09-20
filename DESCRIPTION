@@ -12,7 +12,15 @@ RoxygenNote: 7.3.2
 
 Imports:
  tidyverse,
- gt (>= 0.5.0),
+ gt,
+ htmltools,
+ reactable,
+ plotly,
+ flextable
+
+Depends:
+ tidyverse,
+ gt,
  htmltools,
  reactable,
  plotly,
