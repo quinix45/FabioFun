@@ -8,8 +8,6 @@ Description: A bunch of functions that may or may not be useful in the future.
 License: MIT
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.3.2
-
 Imports:
  tidyverse,
  gt,
@@ -17,11 +15,4 @@ Imports:
  reactable,
  plotly,
  flextable
-
-Depends:
- tidyverse,
- gt,
- htmltools,
- reactable,
- plotly,
- flextable
+RoxygenNote: 7.3.2
