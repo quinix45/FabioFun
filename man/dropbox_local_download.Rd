@@ -12,7 +12,7 @@ dropbox_local_download(remote_folder, dir_name = "Sim_Results")
 
 \arguments{
   \item{remote_folder:}{Path to remote folder. Must be a public Dropbox link.}
-  \item{b:}{ Name of the folder that is created}
+  \item{dir_name:}{ Name of the folder that is created}
 }
 
 \details{The function currently requires to keep the original .zip file in the local folder to check whether the remote folder is different. The function always creates the new folder specified with the `dir_name` argument in the same location as the current R script.}

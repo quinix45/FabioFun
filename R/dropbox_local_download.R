@@ -50,7 +50,7 @@ cat("Checking whether remote files are different than the ones in", dir_name, ".
 
 Dropbox_response <- httr::HEAD(remote_folder)
 local_zip_size <- file.info(paste0(folder_path,"/", grepv(".zip", list.files(folder_path))))$size
-remote_zip_size <- httr::headers(response)[["original-content-length"]]
+remote_zip_size <- httr::headers(Dropbox_response)[["original-content-length"]]
 
 
 if(local_zip_size == remote_zip_size){
