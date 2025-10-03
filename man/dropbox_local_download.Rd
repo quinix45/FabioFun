@@ -7,12 +7,13 @@
 This function downloads a remote Dropbox folder and makes sure that the folder is not synced to Dropbox. Further, the function checks whether the local folder is different from the remote one and does not download anything ig the two folders are equivalent. 
 }
 \usage{
-dropbox_local_download(remote_folder, dir_name = "Sim_Results")
+dropbox_local_download(remote_folder, dir_name = "Sim_Results", timeout = 3600)
 }
 
 \arguments{
-  \item{remote_folder:}{Path to remote folder. Must be a public Dropbox link.}
+  \item{remote_folder:}{ Path to remote folder. Must be a public Dropbox link.}
   \item{dir_name:}{ Name of the folder that is created}
+  \item{timeout:}{ Default time before function stops running in seconds. Set to 1 hour by default.}
 }
 
 \details{The function currently requires to keep the original .zip file in the local folder to check whether the remote folder is different. The function always creates the new folder specified with the `dir_name` argument in the same location as the current R script.}

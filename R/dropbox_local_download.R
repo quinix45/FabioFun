@@ -3,7 +3,11 @@
 
 # Path to the current script
 
-dropbox_local_download <- function(remote_folder, dir_name = "Sim_Results"){
+dropbox_local_download <- function(remote_folder, dir_name = "Sim_Results", timeout = 3600){
+
+
+# make sure 1 is the last digit in the 
+remote_folder <- sub(".$", "1", remote_folder)
 
 directory <- dirname(rstudioapi::getActiveDocumentContext()$path)
 
@@ -61,6 +65,8 @@ cat("Remote folder .zip and local folder .zip have the same size (i.e., local an
 
   cat("Remote folder .zip and local folder .zip have different sizes (i.e., local and remote are different). Local files will be deleted and substituted with remote files...")
 
+# increase timeout for longer files (set to 1 hour)
+options(timeout = timeout)
 
 #checks if any files are present, if they are they get deleted and replaced with the new ones
 if(length(list.files(folder_path)) > 0){
@@ -71,7 +77,9 @@ download.file(remote_folder, destfile = paste0(folder_path, "/dropbox_files.zip"
 
 unzip(paste0(folder_path, "/dropbox_files.zip"), exdir = folder_path)
 
-
+# set timeout back to default 60 seconds
+options(timeout = timeout)
+  
  cat(paste("Remote files have been downloaded and unzipped. Find them in", folder_path))
 }
 
