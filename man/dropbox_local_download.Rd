@@ -18,11 +18,12 @@ dropbox_local_download(remote_folder, dir_name = "Sim_Results")
 \details{The function currently requires to keep the original .zip file in the local folder to check whether the remote folder is different. The function always creates the new folder specified with the `dir_name` argument in the same location as the current R script.}
 
 \author{
-Fabio Setti
+Fabio Setti}
 
 \examples{
 
 ## Some simulation results to be downloaded
 
 dropbox_local_download(remote_folder = "https://www.dropbox.com/scl/fo/71nz5ue80br6kzm3nufwk/AK3bQD9ire4K2SPpY1fvFX4?rlkey=5imyzvaarfdlizwfyf4lt5zyq&st=oning16x&dl=1")
+
 }
