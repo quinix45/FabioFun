@@ -16,7 +16,7 @@ dropbox_local_download(remote_folder, dir_name = "Sim_Results", timeout = 3600)
   \item{timeout:}{ Default time before function stops running in seconds. Set to 1 hour by default.}
 }
 
-\details{The function currently requires to keep the original .zip file in the local folder to check whether the remote folder is different. The function always creates the new folder specified with the `dir_name` argument in the same location as the current R script.}
+\details{The function will save a remote_size.txt containing the size of the remote folder when it was last downloaded. This is to check whether the files in the local folder and the remote folder are different. The function always creates the new folder specified with the `dir_name` argument in the same location as the current R script.}
 
 \author{
 Fabio Setti}
