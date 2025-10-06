@@ -33,8 +33,8 @@ if (Sys.info()[["sysname"]] == "Windows") {
 
 # MACos
 } else if (Sys.info()[["sysname"]] == "Darwin") {
-    bash_cmd <- paste0(
-      "xattr -w com.apple.fileprovider.ignore#P 1 '", folder_path, "'"
+bash_cmd <- paste0(
+      "xattr -w com.dropbox.ignored 1 ", "'", folder_path, "'"
     )
     system(bash_cmd)
     
