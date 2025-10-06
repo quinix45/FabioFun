@@ -1,7 +1,4 @@
 
-# library(rstudioapi)
-
-# Path to the current script
 
 dropbox_local_download <- function(remote_folder, dir_name = "Sim_Results", timeout = 3600){
 
@@ -33,7 +30,7 @@ if (Sys.info()[["sysname"]] == "Windows") {
 
 # MACos
 } else if (Sys.info()[["sysname"]] == "Darwin") {
-bash_cmd <- paste0(
+  bash_cmd <- paste0(
       "xattr -w com.dropbox.ignored 1 ", "'", folder_path, "'"
     )
     system(bash_cmd)
@@ -53,17 +50,24 @@ cat("Checking whether remote files are different than the ones in", dir_name, ".
 # library(httr)
 
 Dropbox_response <- httr::HEAD(remote_folder)
-local_zip_size <- file.info(paste0(folder_path,"/", grepv(".zip", list.files(folder_path))))$size
+# load the stored size of the remote and check if it is still the same
+if(sum(list.files(folder_path) %in% "remote_size.txt") != 0) {
+local_zip_size <- as.numeric(read.table(paste0(folder_path, "/remote_size.txt")))
+} else {
+local_zip_size   <-  0
+}
+  
+  
 remote_zip_size <- httr::headers(Dropbox_response)[["original-content-length"]]
 
 
 if(local_zip_size == remote_zip_size){
 
-cat("Remote folder .zip and local folder .zip have the same size (i.e., local and remote are equivalent). No files will be downloaded")
+cat("Remote folder and local folder have the same size (i.e., local and remote are equivalent). No files will be downloaded")
 
 } else {
 
-  cat("Remote folder .zip and local folder .zip have different sizes (i.e., local and remote are different). Local files will be deleted and substituted with remote files...")
+  cat("Remote folder and local folder have different sizes (i.e., local and remote are different). Local files will be deleted and substituted with remote files...")
 
 # increase timeout for longer files (set to 1 hour)
 options(timeout = timeout)
@@ -76,9 +80,16 @@ file.remove(paste0(folder_path, "/",list.files(folder_path)))
 download.file(remote_folder, destfile = paste0(folder_path, "/dropbox_files.zip"), mode = "wb")
 
 unzip(paste0(folder_path, "/dropbox_files.zip"), exdir = folder_path)
+  
+# stores size of remote zip (used to check later whether remote has changed)  
+write.table(httr::headers(Dropbox_response)[["original-content-length"]], paste0(folder_path, "/remote_size.txt"))  
 
+# delete .zip file
+
+file.remove(paste0(folder_path, "/dropbox_files.zip"))
+  
 # set timeout back to default 60 seconds
-options(timeout = timeout)
+options(timeout = 60)
   
  cat(paste("Remote files have been downloaded and unzipped. Find them in", folder_path))
 }
