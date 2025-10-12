@@ -4,7 +4,7 @@
 \title{Download Dropbox folder and maintain on local machine only
 }
 \description{
-This function downloads a remote Dropbox folder and makes sure that the folder is not synced to Dropbox. Further, the function checks whether the local folder is different from the remote one and does not download anything ig the two folders are equivalent. 
+This function downloads a remote Dropbox folder and makes sure that the folder is not synced to Dropbox. Further, the function checks whether the local folder is different from the remote one and does not download anything if the two folders are equivalent. Works for Windows, MacOS, and Linux. 
 }
 \usage{
 dropbox_local_download(remote_folder, dir_name = "Sim_Results", timeout = 3600)
