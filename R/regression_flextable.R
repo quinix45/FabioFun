@@ -85,6 +85,7 @@ regression_flextable <- function(lm_object, title = "", var_names = NULL, interc
   
   ft <- flextable(lm_tab)
   ft <- ft %>%
+    ## issue should be with this
     flextable::compose(j = "R^2", value = as_paragraph(as_equation(lm_tab[,6]))) %>%
     flextable::compose(j = "R^2", part = "header" , value = as_paragraph(as_equation("R^2"))) %>%
     width( j = 6, 3.5, unit = "in") %>% 
