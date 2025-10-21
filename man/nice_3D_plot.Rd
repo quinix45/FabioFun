@@ -21,10 +21,10 @@ nice_3D_plot(y,
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-\item{y}{The outcome varaible of the regression.} 
+\item{y}{The outcome variable of the regression.} 
 \item{x1}{First predictor variable of the regression.} 
-\item{x2}{Second perdictor varaible of the regression.}
-\item{axis_names}{A character vector of length 3 definig the labels of the 3 axes (y, x1, x2).} 
+\item{x2}{Second predictor variable of the regression.}
+\item{axis_names}{A character vector of length 3 defining the labels of the 3 axes (y, x1, x2).} 
 \item{dot_labels}{Labels for each of the scatterplot point. must be of the same length as supplied data.} 
 \item{groups}{Grouping label foe each of the scatterplot points. must be of the same length as supplied data.}
 \item{reg_plane}{Set to `TRUE` if regression plane is desired.}

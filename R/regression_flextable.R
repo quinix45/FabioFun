@@ -1,8 +1,39 @@
 regression_flextable <- function(lm_object, title = "", var_names = NULL, intercept = TRUE)
 {
-  
-  require(tidyverse, quietly = TRUE)
-  require(flextable, quietly = TRUE)
+  # warning about length of variable names
+
+
+if(!is.null(var_names)){
+ 
+  if(isTRUE(intercept)){
+
+    var_names <- c("Intercept", var_names)
+
+    if(length(var_names) != nrow(summary(lm_mod)$coefficients)){
+
+      cat(paste("ERROR: Number of Variable names supplied to `var_names =` must be the same number of regression coefficients.", length(var_names) - 1, "Variable names supplied, but the model has", nrow(summary(lm_mod)$coefficients) -1, "regrssion coefficients." ) )
+
+      stop()
+
+    }} else{
+
+      if(length(var_names) != nrow(summary(lm_mod)$coefficients)){
+
+      cat(paste("ERROR: Number of Variable names supplied to `var_names =` must be the same number of regression coefficients.", length(var_names), "Variable names supplied, but the model has", nrow(summary(lm_mod)$coefficients), "regrsssion coefficients." ) )
+
+      stop()
+
+  }
+    
+  } 
+
+
+
+
+}
+
+  library(tidyverse, quietly = TRUE)
+  library(flextable, quietly = TRUE)
   
   
   lm_summary <- summary(lm_object)
@@ -11,8 +42,7 @@ regression_flextable <- function(lm_object, title = "", var_names = NULL, interc
   {
     lm_CI <- round(confint(lm_object),2)
     lm_summary$coefficients <- lm_summary$coefficients[,-c(2)] 
-  } 
-  else 
+  } else 
   {
     lm_CI <- round(confint(lm_object)[-1,],2)
     lm_summary$coefficients <- lm_summary$coefficients[-1,-c(2)] 
@@ -87,8 +117,8 @@ regression_flextable <- function(lm_object, title = "", var_names = NULL, interc
   ft <- ft %>%
     ## issue should be with this
     flextable::compose(j = "R^2", value = as_paragraph(as_equation(lm_tab[,6]))) %>%
-    flextable::compose(j = "R^2", part = "header" , value = as_paragraph(as_equation("R^2"))) %>%
-    width( j = 6, 3.5, unit = "in") %>% 
+    flextable::compose(j = "R^2", part = "header" , value = as_paragraph(as_i("R"), as_sup("2"))) %>%
+    width(j = 6, 3.5, unit = "in") %>% 
     bold(bold = TRUE, part = "header") %>%
     line_spacing(space = 1.5, part = "all") %>%
     set_caption(caption = title) %>%
@@ -98,16 +128,3 @@ regression_flextable <- function(lm_object, title = "", var_names = NULL, interc
   
   return(ft)
 }
-
-
-
-## Test
-
-# lm_mod <- lm(Sepal.Length ~ Petal.Length + Petal.Width, iris)
-# 
-# reg_table <- regression_flextable(lm_mod)
-# 
-# print(reg_table)
-
-# 
-# save_as_docx(reg_table, path = "table.docx")
