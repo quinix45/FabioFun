@@ -9,17 +9,17 @@ if(!is.null(var_names)){
 
     var_names <- c("Intercept", var_names)
 
-    if(length(var_names) != nrow(summary(lm_mod)$coefficients)){
+    if(length(var_names) != nrow(summary(lm_object)$coefficients)){
 
-      cat(paste("ERROR: Number of Variable names supplied to `var_names =` must be the same number of regression coefficients.", length(var_names) - 1, "Variable names supplied, but the model has", nrow(summary(lm_mod)$coefficients) -1, "regrssion coefficients." ) )
+      cat(paste("ERROR: Number of Variable names supplied to `var_names =` must be the same number of regression coefficients.", length(var_names) - 1, "Variable names supplied, but the model has", nrow(summary(lm_object)$coefficients) -1, "regrssion coefficients." ) )
 
       stop()
 
     }} else{
 
-      if(length(var_names) != (nrow(summary(lm_mod)$coefficients) - 1)){
+      if(length(var_names) != (nrow(summary(lm_object)$coefficients) - 1)){
 
-      cat(paste("ERROR: Number of Variable names supplied to `var_names =` must be the same number of regression coefficients.", length(var_names), "Variable names supplied, but the model has", nrow(summary(lm_mod)$coefficients), "regrsssion coefficients." ) )
+      cat(paste("ERROR: Number of Variable names supplied to `var_names =` must be the same number of regression coefficients.", length(var_names), "Variable names supplied, but the model has", nrow(summary(lm_object)$coefficients), "regrsssion coefficients." ) )
 
       stop()
 
