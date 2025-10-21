@@ -17,7 +17,7 @@ if(!is.null(var_names)){
 
     }} else{
 
-      if(length(var_names) != nrow(summary(lm_mod)$coefficients)){
+      if(length(var_names) != (nrow(summary(lm_mod)$coefficients) - 1)){
 
       cat(paste("ERROR: Number of Variable names supplied to `var_names =` must be the same number of regression coefficients.", length(var_names), "Variable names supplied, but the model has", nrow(summary(lm_mod)$coefficients), "regrsssion coefficients." ) )
 
