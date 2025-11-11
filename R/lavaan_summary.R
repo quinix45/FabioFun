@@ -1,6 +1,4 @@
 
-# a function that returns a neater output for lavaan path models
-
 lavaan_summary <- function(lavaan_mod){
   
   require(tidyverse, quietly = TRUE)
