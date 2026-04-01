@@ -8,7 +8,7 @@ dropbox_local_download <- function(
 
   directory <- dirname(rstudioapi::getActiveDocumentContext()$path)
 
-  # check if the 'Sim_Results' folder exists on local, if it doesn't then it's created.
+  # check if the dir_name folder exists on local, if it doesn't then it's created.
 
   folder_path <- file.path(directory, dir_name)
 
@@ -49,7 +49,7 @@ dropbox_local_download <- function(
       stop(
         "Unsupported OS: ",
         os,
-        ". Only Windows, MacOS, and Linux are supported (there are other OSs??)"
+        ". Only Windows, MacOS, and Linux are supported (you are running this on another OS!?)"
       )
 
       break()
