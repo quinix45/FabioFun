@@ -1,4 +1,5 @@
-source("R/genPattern_RH.R")
+# install package
+# devtools::install_github("quinix45/FabioFun")
 
 set.seed(123)
 
@@ -15,7 +16,7 @@ pars <- cbind(
   d = rnorm(J, mean = 0, sd = 0.5)
 )
 
-dat <- genPattern_RH(
+dat <- Fabiofun::genPattern_RH(
   th = theta,
   pars = pars,
   seed = 346536

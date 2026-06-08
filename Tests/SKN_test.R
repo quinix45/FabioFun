@@ -1,5 +1,5 @@
-source("R/genPattern_SKN.R")
-
+# install package
+# devtools::install_github("quinix45/FabioFun")
 set.seed(123)
 
 N <- 1000
@@ -15,7 +15,7 @@ pars <- cbind(
   lambda = rnorm(J, mean = 0, sd = 0.5)
 )
 
-dat <- genPattern_SKN(
+dat <- FabioFun::genPattern_SKN(
   th = theta,
   pars = pars,
   seed = 346536
@@ -45,7 +45,7 @@ P.SKN <- function(par, Theta, ncat) {
 
 x_skn <- createItem(name, par = par, est = est, P = P.SKN)
 
-# pretty slow, may have to do with the psn() function in the definition
+# pretty slow, I suspect it has to do with the psn() function in the definition
 mod_skn <- mirt(dat, 1, itemtype = 'SKN', customItems = list(SKN = x_skn))
 
 # not good
