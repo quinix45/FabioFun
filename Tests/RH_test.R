@@ -16,7 +16,7 @@ pars <- cbind(
   d = rnorm(J, mean = 0, sd = 0.5)
 )
 
-dat <- Fabiofun::genPattern_RH(
+dat <- FabioFun::genPattern_RH(
   th = theta,
   pars = pars,
   seed = 346536
