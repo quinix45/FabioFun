@@ -1,4 +1,4 @@
-irf.RH <- function(
+irf_RH <- function(
   theta,
   a = 1,
   b = 0,

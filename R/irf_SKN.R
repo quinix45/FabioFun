@@ -1,4 +1,4 @@
-irf.SKN <- function(
+irf_SKN <- function(
   theta,
   a = 1,
   b = 0,
