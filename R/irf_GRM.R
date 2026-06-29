@@ -1,4 +1,4 @@
-irf_GRM <- function(theta, a = 1, b = 0) {
+irf_GRM <- function(theta, a = 1, b = 0, returnCat = NULL) {
   # vectorize for multiple thetas
   theta_rep <- rep(theta, each = length(b))
   b_rep <- rep(b, length(theta))
@@ -15,8 +15,14 @@ irf_GRM <- function(theta, a = 1, b = 0) {
     rep(0, length(theta))
   )
 
+  if (!is.null(returnCat)) {
+    return(P_left[, returnCat] - P_right[, returnCat])
+  }
+
   # calculate the difference between adjancet categories
   return(P_left - P_right)
 }
 
 # irf_GRM(theta = c(-5, 5), a = 1, b = c(0, 5, 6))
+
+# irf_GRM(theta = c(-5, 5), a = 1, b = c(0, 5, 6), returnCat = 4)
