@@ -1,0 +1,28 @@
+irf_LPE_Poly <- function(theta, a = 1, b = 0, ksi = 1, returnCat = NULL) {
+  # vectorize for multiple thetas
+  theta_rep <- rep(theta, each = length(b))
+  b_rep <- rep(b, length(theta))
+
+  # 2PL IRF
+  probs <- plogis(a * (theta_rep - b_rep))^ksi
+
+  P_left <- cbind(
+    rep(1, length(theta)),
+    matrix(probs, ncol = length(b), nrow = length(theta), byrow = TRUE)
+  )
+  P_right <- cbind(
+    matrix(probs, ncol = length(b), nrow = length(theta), byrow = TRUE),
+    rep(0, length(theta))
+  )
+
+  if (!is.null(returnCat)) {
+    return(P_left[, returnCat] - P_right[, returnCat])
+  }
+
+  # calculate the difference between adjancet categories
+  return(P_left - P_right)
+}
+
+# irf_LPE_Poly(theta = c(-5, 5), a = 1, b = c(0, 5, 6), ksi = 1.3)
+
+# irf_LPE_Poly(theta = c(-5, 5), a = 1, b = c(0, 5, 6), ksi = 1.3, returnCat = 3)
