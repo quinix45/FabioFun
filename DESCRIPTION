@@ -17,5 +17,6 @@ Imports:
  equatags,
  flextable,
  rstudioapi,
+ sn,
  httr
 RoxygenNote: 7.3.2
